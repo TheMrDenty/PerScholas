@@ -12,7 +12,7 @@ class Hamster {
         return 'nibble nibble';
     }
     getPrice(){
-        return `this hamster is ${this.price}$`;
+        return this.price;
     }
 }
 
@@ -65,6 +65,7 @@ class Person {
         this.hamsters.push(hamster);
         const array = this.getAllHamsters(this.hamsters)
         this.mood -= 10;
+        console.log(hamster.getPrice())
         this.bankAccount -= hamster.getPrice();
         return `${this.name} has bought ${hamster.name} for ${hamster.getPrice()} and is now ${this.mood}/100 happy. They now have these hamsters${array}`
     }
@@ -77,7 +78,76 @@ class Person {
     }
 }
 
-let person1 = new Person('Terry', 21, 64, 120, 54, [], 200)
+// instantuating timmy
+let timmy = new Person('Timmy')
+console.log(timmy)
+// aging 5 years
+console.log(timmy.ageUp())
+console.log(timmy.ageUp())
+console.log(timmy.ageUp())
+console.log(timmy.ageUp())
+console.log(timmy.ageUp())
+console.log(timmy)
+// eating 5 times
+console.log(timmy.eat())
+console.log(timmy.eat())
+console.log(timmy.eat())
+console.log(timmy.eat())
+console.log(timmy.eat())
+console.log(timmy)
+// exercising 5 times
+console.log(timmy.exercise())
+console.log(timmy.exercise())
+console.log(timmy.exercise())
+console.log(timmy.exercise())
+console.log(timmy.exercise())
+console.log(timmy)
+// age up 9 times
+console.log(timmy.ageUp())
+console.log(timmy.ageUp())
+console.log(timmy.ageUp())
+console.log(timmy.ageUp())
+console.log(timmy.ageUp())
+console.log(timmy.ageUp())
+console.log(timmy.ageUp())
+console.log(timmy.ageUp())
+console.log(timmy.ageUp())
+console.log(timmy)
+// create Gus
+let gus = new Hamster(99, 'Timmy', 'Gus')
+console.log(gus)
+//Timmy buys Gus
+console.log(timmy.buyHamster(gus))
+console.log(timmy)
+// age Timmy 15 years
+console.log(timmy.ageUp())
+console.log(timmy.ageUp())
+console.log(timmy.ageUp())
+console.log(timmy.ageUp())
+console.log(timmy.ageUp())
+console.log(timmy.ageUp())
+console.log(timmy.ageUp())
+console.log(timmy.ageUp())
+console.log(timmy.ageUp())
+console.log(timmy.ageUp())
+console.log(timmy.ageUp())
+console.log(timmy.ageUp())
+console.log(timmy.ageUp())
+console.log(timmy.ageUp())
+console.log(timmy.ageUp())
+console.log(timmy)
+// Timmy eats twice
+console.log(timmy.eat())
+console.log(timmy.eat())
+console.log(timmy)
+// exercising 2 times
+console.log(timmy.exercise())
+console.log(timmy.exercise())
+console.log(timmy)
+
+// Testing 
+
+//let person1 = new Person('Terry', 21, 64, 120, 54, [], 200)
 // console.log(person1);
 // console.log(person1.getName());
 // console.log(person1.getAge());
