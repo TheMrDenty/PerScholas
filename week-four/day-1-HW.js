@@ -145,6 +145,40 @@ console.log(timmy.exercise())
 console.log(timmy.exercise())
 console.log(timmy)
 
+class Dinner {
+    constructor (appetizer, entree, dessert) {
+        this.appetizer = appetizer;
+        this.entree = entree;
+        this.dessert = dessert;
+    }
+}
+
+class Chef extends Dinner {
+    constructor (name) {
+        super(name);
+        this.name = name;
+        this.dinners = [];
+    }
+    Order(appetizer, entree, dessert) {
+        const newDinner = new Dinner(appetizer, entree, dessert);
+        this.dinners.push(newDinner);
+        return `Chef ${this.name} prepares a 3 course meal that includes ${appetizer} for a starter, ${entree} for the main course, and ${dessert} to finish off with`
+    }
+    findDinner (index) {
+        return this.dinners[index];
+    }
+}
+
+const Chef1 = new Chef('Jimmy');
+console.log(Chef1.Order('Tapas', 'Lamb Chops', 'Espresso Shot'));
+console.log(Chef1.Order('Mozz Sticks', 'Spaghetti', 'Cheese Cake'));
+console.log(Chef1.Order('Cheese Curds', 'Cheeseburger', 'Ice Cream'));
+console.log(Chef1.findDinner(0));
+console.log(Chef1.findDinner(1));
+console.log(Chef1.findDinner(2));
+
+
+
 // Testing 
 
 //let person1 = new Person('Terry', 21, 64, 120, 54, [], 200)
