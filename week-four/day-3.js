@@ -34,7 +34,27 @@ console.log(dart);
 wolfy[0] = 'Gameboy'
 console.log(wolfy); */
 
-turtles = ['Donatello', 'Leonardo', 'Raphael', 'Michaelangelo']
+/* turtles = ['Donatello', 'Leonardo', 'Raphael', 'Michaelangelo']
 for(let i=0; i<turtles.length; i++){
     console.log(turtles[i].toUpperCase());
-}
+} */
+
+const favMovies = [
+    'Jaws', 'The Fellowship of the Ring', 'Howl\'s Moving Castle', 'Django Unchained', 
+    'Cloud Atlas', 'The Usual Suspects', 'Toy Story', 'Conan the Barbarian', 'Titanic', 
+    'Harry Potter', 'Fried Green Tomatoes', 'Volver', 'Oculus', 'Seven', 'Black Panther', 
+    'Harry Potter', 'Imitation of Life', 'Snatch', 'Fast and Furious'
+];
+
+console.log(favMovies.sort()); // Permanently sorts the array in alphabetical order
+console.log(favMovies.pop());
+console.log(favMovies.push('Guardians of the Galaxy'));
+console.log(favMovies.reverse());
+console.log(favMovies.shift());
+console.log(favMovies.unshift()); // unshift returns the index of the final item if no item is passed into it
+console.log(favMovies.indexOf('Django Unchained'));
+console.log(favMovies.splice(14, 1, 'Avatar'));
+let lastHalfFavMovies = favMovies.slice((favMovies.length / 2));
+console.log(lastHalfFavMovies); // taking the return from the slice and attaching it to a value for later use
+console.log(favMovies.indexOf('Fast and Furious')); // if the element we were searching for wasnt in the array it would return a -1
+// using let would produce the same result because slice does not mutate the array
