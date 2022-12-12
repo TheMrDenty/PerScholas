@@ -39,6 +39,7 @@ for(let i=0; i<turtles.length; i++){
     console.log(turtles[i].toUpperCase());
 } */
 
+/* 
 const favMovies = [
     'Jaws', 'The Fellowship of the Ring', 'Howl\'s Moving Castle', 'Django Unchained', 
     'Cloud Atlas', 'The Usual Suspects', 'Toy Story', 'Conan the Barbarian', 'Titanic', 
@@ -57,4 +58,20 @@ console.log(favMovies.splice(14, 1, 'Avatar'));
 let lastHalfFavMovies = favMovies.slice((favMovies.length / 2));
 console.log(lastHalfFavMovies); // taking the return from the slice and attaching it to a value for later use
 console.log(favMovies.indexOf('Fast and Furious')); // if the element we were searching for wasnt in the array it would return a -1
-// using let would produce the same result because slice does not mutate the array
+// using let would produce the same result because slice does not mutate the array 
+*/
+
+const whereIsWaldo = [
+                        ["Timmy", "Frank"], 
+                        "Eggbert", 
+                        ["Lucinda", "Jacc", "Neff", "Snoop"],
+                        ["Petunia", 
+                            ["Baked Goods", "Waldo"]
+                        ]
+                    ];
+
+console.log(whereIsWaldo.splice(1, 1));
+console.log(whereIsWaldo[1][2]);
+whereIsWaldo[1][2] = "No One";
+console.log(whereIsWaldo);
+console.log(whereIsWaldo[2][1][1]);
