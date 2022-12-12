@@ -137,8 +137,8 @@ const kristynsCloset = [
     ]
   ];
 
-let kristynsShoe = kristynsCloset[0];
-thomsCloset[2].push(kristynsShoe);
+let kristynsShoe = kristynsCloset.splice(0,1);
+thomsCloset[2].push(kristynsShoe[0]);
 console.log(thomsCloset)
 
 let thomsOutfit1 = [thomsCloset[0][0], thomsCloset[1][0], thomsCloset[2][0]]
@@ -149,10 +149,17 @@ let kristynsOutfit1 = [kristynsCloset[0], kristynsCloset[3], kristynsCloset[5]]
 let kristynsOutfit2 = [kristynsCloset[2], kristynsCloset[5], kristynsCloset[4]]
 let kristynsOutfit3 = [kristynsCloset[3], kristynsCloset[5], kristynsCloset[4]]
 
-console.log(`Kristyn is wearing ${kristynsOutfit1[0]} with ${kristynsOutfit1[1]} and ${kristynsOutfit1[2]}`)
+/* console.log(`Kristyn is wearing ${kristynsOutfit1[0]} with ${kristynsOutfit1[1]} and ${kristynsOutfit1[2]}`)
 console.log(`Kristyn is wearing ${kristynsOutfit2[0]} with ${kristynsOutfit2[1]} and ${kristynsOutfit2[2]}`)
 console.log(`Kristyn is wearing ${kristynsOutfit3[0]} with ${kristynsOutfit3[1]} and ${kristynsOutfit3[2]}`)
 
 console.log(`Tom is wearing ${thomsOutfit1[0]} with ${thomsOutfit1[1]} and ${thomsOutfit1[2]}`)
 console.log(`Tom is wearing ${thomsOutfit2[0]} with ${thomsOutfit2[1]} and ${thomsOutfit2[2]}`)
-console.log(`Tom is wearing ${thomsOutfit3[0]} with ${thomsOutfit3[1]} and ${thomsOutfit3[2]}`)
+console.log(`Tom is wearing ${thomsOutfit3[0]} with ${thomsOutfit3[1]} and ${thomsOutfit3[2]}`) */
+
+
+for(let i=0; i<kristynsCloset.length; i++) {
+    console.log(`WHIRR: Now washing ${kristynsCloset[i]}`)
+}
+
+console.log(thomsCloset[0], thomsCloset[1], thomsCloset[2])
