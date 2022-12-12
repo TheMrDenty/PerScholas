@@ -97,8 +97,62 @@ for (let i=1; i<=20; i++){
 }
  */
 
+/* 
 const nums = [14,11,16,15,13,16,15,17,19,11,12,14,19,11,15,17,11,18,12,17,12,71,18,15,12];
 
 console.log(nums.sort());
 let answer = Math.floor(nums.length / 2)
 console.log(nums[answer]);
+ */
+
+
+const kristynsCloset = [
+    "left shoe",
+    "cowboy boots",
+    "right sock",
+    "Per Scholas hoodie",
+    "green pants",
+    "yellow knit hat",
+    "marshmallow peeps"
+  ];
+  
+  // Thom's closet is more complicated. Check out this nested data structure!!
+  const thomsCloset = [
+    [
+      // These are Thom's shirts
+      "grey button-up",
+      "dark grey button-up",
+      "light blue button-up",
+      "blue button-up",
+    ],[
+      // These are Thom's pants
+      "grey jeans",
+      "jeans",
+      "PJs"
+    ],[
+      // Thom's accessories
+      "wool mittens",
+      "wool scarf",
+      "raybans"
+    ]
+  ];
+
+let kristynsShoe = kristynsCloset[0];
+thomsCloset[2].push(kristynsShoe);
+console.log(thomsCloset)
+
+let thomsOutfit1 = [thomsCloset[0][0], thomsCloset[1][0], thomsCloset[2][0]]
+let thomsOutfit2 = [thomsCloset[0][1], thomsCloset[1][1], thomsCloset[2][1]]
+let thomsOutfit3 = [thomsCloset[0][2], thomsCloset[1][2], thomsCloset[2][2]]
+ 
+let kristynsOutfit1 = [kristynsCloset[0], kristynsCloset[3], kristynsCloset[5]] 
+let kristynsOutfit2 = [kristynsCloset[2], kristynsCloset[5], kristynsCloset[4]]
+let kristynsOutfit3 = [kristynsCloset[3], kristynsCloset[5], kristynsCloset[4]]
+
+console.log(`Kristyn is wearing ${kristynsOutfit1[0]} with ${kristynsOutfit1[1]} and ${kristynsOutfit1[2]}`)
+console.log(`Kristyn is wearing ${kristynsOutfit2[0]} with ${kristynsOutfit2[1]} and ${kristynsOutfit2[2]}`)
+console.log(`Kristyn is wearing ${kristynsOutfit3[0]} with ${kristynsOutfit3[1]} and ${kristynsOutfit3[2]}`)
+
+console.log(`Tom is wearing ${thomsOutfit1[0]} with ${thomsOutfit1[1]} and ${thomsOutfit1[2]}`)
+console.log(`Tom is wearing ${thomsOutfit2[0]} with ${thomsOutfit2[1]} and ${thomsOutfit2[2]}`)
+console.log(`Tom is wearing ${thomsOutfit3[0]} with ${thomsOutfit3[1]} and ${thomsOutfit3[2]}`)
