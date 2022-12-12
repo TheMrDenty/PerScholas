@@ -77,6 +77,8 @@ whereIsWaldo[1][2] = "No One";
 console.log(whereIsWaldo);
 console.log(whereIsWaldo[2][1][1]);
  */
+
+/* 
 messages = ["...human...why you taking pictures of me?...", "...the catnip made me do it...", "...why does the red dot always get away..."]
 for (let i=1; i<=20; i++){
     if (i % 2 === 0) {
@@ -93,3 +95,10 @@ for (let i=1; i<=20; i++){
     }
 
 }
+ */
+
+const nums = [14,11,16,15,13,16,15,17,19,11,12,14,19,11,15,17,11,18,12,17,12,71,18,15,12];
+
+console.log(nums.sort());
+let answer = Math.floor(nums.length / 2)
+console.log(nums[answer]);
