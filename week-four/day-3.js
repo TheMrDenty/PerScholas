@@ -19,7 +19,7 @@
     console.log(i);
 } */
 
-const wolfy = ["Wolfy", "wolf", 16, "Yukon Territory"]
+/* const wolfy = ["Wolfy", "wolf", 16, "Yukon Territory"]
 const sharky = ["Sharky", "shark", 20, "Left Coast"]
 const plantee = ["Plantee", "plant",  5000 , "Mordor"]
 const porgee = ["Porgee", "Porg", 186, "Ahch-To"]
@@ -32,4 +32,9 @@ console.log(wolfy);
 dart[3] = ["Upside Down", "Hawkins"]
 console.log(dart);
 wolfy[0] = 'Gameboy'
-console.log(wolfy);
+console.log(wolfy); */
+
+turtles = ['Donatello', 'Leonardo', 'Raphael', 'Michaelangelo']
+for(let i=0; i<turtles.length; i++){
+    console.log(turtles[i].toUpperCase());
+}
