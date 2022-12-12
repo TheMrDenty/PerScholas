@@ -61,6 +61,7 @@ console.log(favMovies.indexOf('Fast and Furious')); // if the element we were se
 // using let would produce the same result because slice does not mutate the array 
 */
 
+/* 
 const whereIsWaldo = [
                         ["Timmy", "Frank"], 
                         "Eggbert", 
@@ -75,3 +76,20 @@ console.log(whereIsWaldo[1][2]);
 whereIsWaldo[1][2] = "No One";
 console.log(whereIsWaldo);
 console.log(whereIsWaldo[2][1][1]);
+ */
+messages = ["...human...why you taking pictures of me?...", "...the catnip made me do it...", "...why does the red dot always get away..."]
+for (let i=1; i<=20; i++){
+    if (i % 2 === 0) {
+        decidingInt = Math.random();
+        if (decidingInt <= .33) {
+            console.log(messages[0], i)
+        } else if (decidingInt >= .33 && decidingInt <= .66) {
+            console.log(messages[1], i)
+        } else if (decidingInt >= .66 && decidingInt <= 1) {
+            console.log(messages[2], i)
+        }
+    } else {
+        console.log("Love me, pet me! HSSSSSS!", i);
+    }
+
+}
