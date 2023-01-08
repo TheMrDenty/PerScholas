@@ -8,6 +8,10 @@ class Ship {
         this.firepower = firepower;
         this.accuracy = accuracy;
     }
+    attack(enemyShip) {
+        enemyShip.hull -= this.firepower;
+        return `${this.name} has attacked ${enemyShip.name}'s ship and dealt ${this.firepower}dp to their health leaving them with ${enemyShip.hull}hp`
+    }
 }
 
 class AlienShip extends Ship {
@@ -19,10 +23,6 @@ class AlienShip extends Ship {
 }
 
 
-// building users ship
-let userShip = new Ship('U.S.S. Assembly', 'U.S. Space Force',20, 5, .7)
-// checking ships values
-//console.log(userShip);
 
 
 
@@ -43,14 +43,18 @@ function randomAlienNameGenerator() {
         'Zumbana Wordinat', 'Rantan Flavyol', 'Treshandit Weeruni', 'Latnamy Prebant', 'Busra Amesat',
     ];
     
-    //                                          length-1 bc 0 idx
+    //                                          length-1 bc of 0 idx
     let selectedIdx = randomNumberGenerator(0, (alienNames.length - 1));
 
     return alienNames[selectedIdx];
 
 }
 
-function ShipBuilder() {
+function PlayerShipBuilder() {
+    return new Ship('U.S.S. Assembly', 'U.S. Space Force', 20, 5, .7)
+}
+
+function AlienShipBuilder() {
     
     // setting each ships value
     let name = randomAlienNameGenerator();
@@ -64,4 +68,4 @@ function ShipBuilder() {
     return alienShip;
 }
 
-console.log(ShipBuilder());
+module.exports = {PlayerShipBuilder, AlienShipBuilder}
