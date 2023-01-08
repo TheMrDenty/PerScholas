@@ -76,15 +76,15 @@ console.log(mappedWords); */
 /* let initialValue = 0;
 const sumWithInitial = nums.reduce((accumulator, currentValue) => accumulator + currentValue, initialValue);
 
-console.log(sumWithInitial); */
-
+console.log(sumWithInitial);
+ */
 // 2. 
 
 /* let concatenatedWords = '';
 const concatenator = panagram.reduce((accumulator, currentValue) => accumulator + currentValue, concatenatedWords);
 
-console.log(concatenator); */
-
+console.log(concatenator);
+ */
 
 // Sort
 // 1.
@@ -100,24 +100,28 @@ console.log(concatenator); */
 
 // 3 & 4
 
-/* console.log(nums.sort((num) => num));
+/* console.log(nums.sort((a, b) => a-b));
 
-console.log(nums.sort((num) => -num)); */
+console.log(nums.sort((a, b) => b-a)); */
 
 // 5 & 6
+/* 
+console.log(panagram.sort((a, b) => a.toLowerCase()<b.toLowerCase() ? -1 : 1));
 
-/* console.log(panagram.sort((a, b) => a<b ? -1 : 1));
-
-console.log(panagram.sort((a, b) => a>b ? -1 : 1)); */
-
+console.log(panagram.sort((a, b) => a.toLowerCase()>b.toLowerCase() ? -1 : 1));
+ */
 
 // isPanagram
 /* let concatenatedWords = '';
 let alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')
 
 const concatenator = panagram.reduce((accumulator, currentValue) => accumulator + currentValue, concatenatedWords).toLowerCase().split('');
-concatenator.sort()
+
+concatenator.sort();
+// console.log(concatenator);
 const noDupesConcatenator = removeDuplicates(concatenator);
+
+console.log(noDupesConcatenator);
 
 noDupesConcatenator.forEach((letter, idx) => {
     if(letter === alphabet[idx]){
@@ -253,4 +257,7 @@ const products = [
         return 1;
     }
     return 0;
-})); */
+}));
+
+console.log(products.sort((lastProduct, currentProduct) => lastProduct.name.toLowerCase()<currentProduct.name.toLowerCase() ? -1 : 1));
+ */
