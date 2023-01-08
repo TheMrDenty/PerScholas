@@ -1,56 +1,196 @@
-const ship = require('./ship')
-// Earth has been attacked by a horde of aliens! You are the captain of the USS Assembly, 
-// on a mission to destroy every last alien ship.
+const textElement = document.getElementById('text');
+const optionButtonsElement = document.getElementById('option-buttons');
 
-// Battle the aliens as you try to destroy them with your lasers.
+let state = {};
 
-// There are six alien ships. The aliens' weakness is that they are too logical and attack one at a time: 
-// they will wait to see the outcome of a battle before deploying another alien ship. Your strength is that you have 
-// the initiative and get to attack first. However, you do not have targeting lasers and can only attack the aliens in order. 
-// After you have destroyed a ship, you have the option to make a hasty retreat.
-
+function startGame() {
+    state = {};
+    showTextNode(1);
+}
 
 
-// building alien ship
-let alienShip = ship.AlienShipBuilder();
-// building users ship
-let userShip = ship.PlayerShipBuilder();
+function showTextNode(textNodeIndex) {
+    const textNode = textNodes.find(textNode => textNode.id === textNodeIndex)
+    textElement.innerText = textNode.text;
+    while(optionButtonsElement.firstChild) {
+        optionButtonsElement.removeChild(optionButtonsElement.firstChild)
+    }
 
+    textNode.options.forEach(option => {
+        if(showOption(option)) {
+            const button = document.createElement('button');
+            button.innerText = option.text;
+            button.classList.add('btn');
+            button.addEventListener('click', () => selectOption(option));
+            optionButtonsElement.appendChild(button);
+        }
+    })
+}
 
+function showOption(option) {
+    return option.requiredState == null || option.requiredState(state);
+}
 
+function selectOption(option) {
+    const nextTextNodeId = option.nextText;
+    if(nextTextNodeId <= 0) {
+        return startGame();
+    }
+    state = Object.assign(state, option.setState);
+    showTextNode(nextTextNodeId)
+}
 
-console.log(alienShip);
-console.log(userShip.attack(alienShip));
-console.log(alienShip);
+const textNodes = [
+    {
+        id:1,
+        text: 'You notice  ship in the distance.',
+        options: [
+            {
+                text: 'Take goo',
+                setState: { blueGoo: true},
+                nextText: 2,
+            },
+            {
+                text: 'Leave the goo',
+                nextText: 2,
+            },
+        ]
+    },
+    {
+        id: 2,
+        text: 'You venture forth in search of answers to where you are when you come across a merchant.',
+        options: [
+            {
+                text: 'Trade the goo for a sword',
+                requiredState: (currentState) => currentState.blueGoo,
+                setState: { blueGoo: false, sword: true },
+                nextText: 3,
+            },
+            {
+                text: 'Trade the goo for a shield',
+                requiredState: (currentState) => currentState.blueGoo,
+                setState: { blueGoo: false, shield: true },
+                nextText: 3,
+            },
+            {
+                text: 'Ignore the merchant',
+                nextText: 3,
+            },
+        ]
+    },
+    {
+    id: 3,
+    text: 'After leaving the merchant you start to feel tired and stumble upon a small town next to a dangerous looking castle.',
+    options: [
+        {
+        text: 'Explore the castle',
+        nextText: 4
+        },
+        {
+        text: 'Find a room to sleep at in the town',
+        nextText: 5
+        },
+        {
+        text: 'Find some hay in a stable to sleep in',
+        nextText: 6
+        }
+    ]
+    },
+    {
+    id: 4,
+    text: 'You are so tired that you fall asleep while exploring the castle and are killed by some terrible monster in your sleep.',
+    options: [
+        {
+            text:'Restart',
+            nextText: -1,
+        }
+    ]
+    },
+    {
+    id: 5,
+    text: 'Without any money to buy a room you break into the nearest inn and fall asleep. After a few hours of sleep the owner of the inn finds you and has the town guard lock you in a cell.',
+    options: [
+        {
+        text: 'Restart',
+        nextText: -1
+        }
+    ]
+    },
+    {
+    id: 6,
+    text: 'You wake up well rested and full of energy ready to explore the nearby castle.',
+    options: [
+        {
+        text: 'Explore the castle',
+        nextText: 7
+        }
+    ]
+    },
+    {
+    id: 7,
+    text: 'While exploring the castle you come across a horrible monster in your path.',
+    options: [
+        {
+        text: 'Try to run',
+        nextText: 8
+        },
+        {
+        text: 'Attack it with your sword',
+        requiredState: (currentState) => currentState.sword,
+        nextText: 9
+        },
+        {
+        text: 'Hide behind your shield',
+        requiredState: (currentState) => currentState.shield,
+        nextText: 10
+        },
+        {
+        text: 'Throw the blue goo at it',
+        requiredState: (currentState) => currentState.blueGoo,
+        nextText: 11
+        }
+    ]
+    },
+    {
+    id: 8,
+    text: 'Your attempts to run are in vain and the monster easily catches.',
+    options: [
+        {
+        text: 'Restart',
+        nextText: -1
+        }
+    ]
+    },
+    {
+    id: 9,
+    text: 'You foolishly thought this monster could be slain with a single sword.',
+    options: [
+        {
+        text: 'Restart',
+        nextText: -1
+        }
+    ]
+    },
+    {
+    id: 10,
+    text: 'The monster laughed as you hid behind your shield and ate you.',
+    options: [
+        {
+        text: 'Restart',
+        nextText: -1
+        }
+    ]
+    },
+    {
+    id: 11,
+    text: 'You threw your jar of goo at the monster and it exploded. After the dust settled you saw the monster was destroyed. Seeing your victory you decide to claim this castle as your and live out the rest of your days there.',
+    options: [
+        {
+        text: 'Congratulations. Play Again.',
+        nextText: -1
+        }
+    ]
+    }
+]
 
-console.log(alienShip.attack(userShip));
-console.log(userShip);
-
-
-
-
-
-/* Game Layout */
-
-// You attack the first alien ship
-
-
-// If the ship survives, it attacks you
-
-
-// If you survive, you attack the ship again
-
-
-// If it survives, it attacks you again ... etc
-
-
-// If you destroy the ship, you have the option to attack the next ship or to retreat
-
-
-// If you retreat, the game is over, perhaps leaving the game open for further developments or options
-
-
-// You win the game if you destroy all of the aliens
-
-
-// You lose the game if you are destroyed
+startGame();
