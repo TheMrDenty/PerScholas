@@ -68,4 +68,4 @@ function AlienShipBuilder() {
     return alienShip;
 }
 
-module.exports = {PlayerShipBuilder, AlienShipBuilder}
+export {PlayerShipBuilder, AlienShipBuilder}

@@ -19,27 +19,29 @@
   <body>
     <div class="grid-container">
       <div class="hp-bars">
-        <div id="player-hull-hp">
-          U.S.S. Assembly
-          <h4 class="hull-hp">20</h4>
+        <div id="player-hull">
+          Players ship
+          <h4 id="player-hull-hp">
+            20
+          </h4>
         </div>
-        <div id="alien-hull-hp">
+        <div id="alien-hull">
           Alien's ship
-          <h4 class="hull-hp">20</h4>
+          <h4 id="alien-hull-hp">20</h4>
         </div>
       </div>
 
-      <div
+      <!-- <div
         class="extra-space-right"
-      ></div>
+      ></div> -->
 
       <div class="screen">
-        <h1>Temp</h1>
+        <h1 id="action-text">Temp</h1>
       </div>
 
-      <div
+      <!-- <div
         class="extra-space-left"
-      ></div>
+      ></div> -->
 
       <div class="container">
         <div id="story-text">Text</div>
@@ -63,6 +65,9 @@
       </div>
     </div>
 
-    <script src="app.js"></script>
+    <script
+      type="module"
+      src="app.js"
+    ></script>
   </body>
 </html>

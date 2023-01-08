@@ -1,10 +1,14 @@
-/* const ship = require('./ship') */
+import {PlayerShipBuilder, AlienShipBuilder} from '/ship.js';
 
 
 
 const storyTextElement = document.getElementById('story-text');
 const optionButtonsElement = document.getElementById('option-buttons');
+const displayH1Element = document.getElementById('action-text');
+const playerNameElement = document.getElementById('player-hull');
+const playerHpElement = document.getElementById('player-hull-hp');
 
+const alienNameElement = document.getElementById('alien-hull');
 
 // Earth has been attacked by a horde of aliens! You are the captain of the USS Assembly, 
 // on a mission to destroy every last alien ship.
@@ -17,14 +21,8 @@ const optionButtonsElement = document.getElementById('option-buttons');
 // After you have destroyed a ship, you have the option to make a hasty retreat.
 
 
-/* 
-// building alien ship
-let alienShip = ship.AlienShipBuilder();
-let attackUser = alienShip.attack(userShip);
-// building users ship
-let userShip = ship.PlayerShipBuilder();
-let attackAlien = userShip.attack(alienShip);
- */
+
+
 
 
 /* console.log(alienShip);
@@ -38,6 +36,28 @@ console.log(userShip); */
 let state = {};
 
 function startGame() {
+   /*  // building alien ship
+    let alienShip = ship.AlienShipBuilder();
+    let attackUser = alienShip.attack(userShip);
+    // building users ship
+    let userShip = ship.PlayerShipBuilder();
+    let attackAlien = userShip.attack(alienShip);
+     */
+    let playerShip = PlayerShipBuilder();
+    let alienShip = AlienShipBuilder();
+
+    playerNameElement.innerHTML = `
+    ${playerShip.name}
+        <h4 id="player-hull-hp">
+        ${playerShip.hull}
+        </h4>
+    `;
+    
+    //playerHpElement.innerHTML = `<h4 id="alien-hull-hp">${playerShip.name}</h4>`
+
+    alienNameElement.innerText = alienShip.name;
+
+    console.log(playerShip, playerHpElement.innerHTML = `<h4>${playerShip.name}</h4>`);
     state = {};
     showTextNode(1);
 }
@@ -85,39 +105,53 @@ function selectOption(option) {
     if(nextTextNodeId <= 0) {
         return startGame();
     }
+
+
+    // Step 1 : You attack the first alien ship
+
+    // if player chooses to attack
+    if(option.optionText === 'attack'){
+        /* attackAlien; */
+        displayH1Element.innerText = 'Player attacked Alien';
+        // update state 
+        state = Object.assign(state, option.setState);
+        // shows text menu 3
+        showTextNode(2);
+    } else {
     
     // updates state 
     state = Object.assign(state, option.setState);
 
-    
+    console.log(state);
 
     // shows next text and options
     showTextNode(nextTextNodeId);
+    }
 }
 
-// You attack the first alien ship
 
 
 
-// If the ship survives, it attacks you
+
+// Step 2 : If the ship survives, it attacks you
 
 
-// If you survive, you attack the ship again
+// Step 3 : If you survive, you attack the ship again
 
 
-// If it survives, it attacks you again ... etc
+// Step 4 : If it survives, it attacks you again ... etc
 
 
-// If you destroy the ship, you have the option to attack the next ship or to retreat
+// Step 5 : If you destroy the ship, you have the option to attack the next ship or to retreat
 
 
-// If you retreat, the game is over, perhaps leaving the game open for further developments or options
+// Step 6 : If you retreat, the game is over, perhaps leaving the game open for further developments or options
 
 
-// You win the game if you destroy all of the aliens
+// Step 7 : You win the game if you destroy all of the aliens
 
 
-// You lose the game if you are destroyed
+// Step 8 : You lose the game if you are destroyed
 
 
 
@@ -128,7 +162,7 @@ const textNodes = [
         options: [
             {
                 optionText: "get a closer look",
-                setState: { attack: true},
+                
                 nextText: 2,
             },
             
@@ -136,11 +170,11 @@ const textNodes = [
     },
     {
         id:2,
-        storyText: 'filler',
+        storyText: 'you notice its an enemy ship. How would you like to proceed',
         options: [
             {
                 optionText: 'attack',
-                // attackAlien,
+                setState: { attack: true},
                 nextText: 3,
             },
             {

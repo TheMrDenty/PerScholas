@@ -15,26 +15,30 @@ body {
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(5, 1fr);
     grid-column-gap: 5px;
     grid-row-gap: 5px;
 }
 
-.extra-space-left {
+/* .extra-space-left {
     grid-area: 1 / 1 / 6 / 2;
-}
+} */
 
 .hp-bars {
+    justify-content: center;
+    height: 6rem;
+    width: 50rem;
     display: flex;
-    grid-area: 1 / 2 / 2 / 5;  
+    grid-area: 1 / 1 / 2 / 4; 
     
 }
 
 .screen {
+    height: 50vh;
     justify-content: center;
     align-items: center;
-    grid-area: 2 / 2 / 5 / 5;
+    grid-area: 2 / 1 / 5 / 4;
 }
 
 .screen h1 {
@@ -47,20 +51,23 @@ body {
 }
 
 .container {
-    width: 40em;
-    max-width: 40em;
+    justify-content: center;
+    align-items: center;
+    width: 60rem;
+    max-width: 47.5rem;
     background-color: white;
     padding: 10px;
+    margin-left: 10px;
     border-radius: 5px;
     box-shadow: 0 0 10px 2px;
-    grid-area: 5 / 2 / 6 / 5; 
+    grid-area: 5 / 1 / 6 / 4;
 }
 
-.extra-space-right {
+/* .extra-space-right {
     grid-area: 1 / 5 / 6 / 6;
-}
+} */
 
-#player-hull-hp {
+#player-hull {
     width: 150px;
     max-width: 100%;
     background-color: white;
@@ -72,7 +79,7 @@ body {
     
 }
 
-#alien-hull-hp {
+#alien-hull {
     width: 150px;
     max-width: 100%;
     background-color: white;
@@ -80,7 +87,7 @@ body {
     border-radius: 5px;
     box-shadow: 0 0 10px 2px;
     text-align: center;
-    margin-left: 21em;
+    margin-left: 22em;
     
 }
 
