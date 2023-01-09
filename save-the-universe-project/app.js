@@ -9,7 +9,7 @@ const playerNameElement = document.getElementById('player-hull');
 const playerHpElement = document.getElementById('player-hull-hp');
 
 const alienNameElement = document.getElementById('alien-hull');
-
+const alienHpElement = document.getElementById('alien-hull-hp');
 // Earth has been attacked by a horde of aliens! You are the captain of the USS Assembly, 
 // on a mission to destroy every last alien ship.
 
@@ -19,6 +19,35 @@ const alienNameElement = document.getElementById('alien-hull');
 // they will wait to see the outcome of a battle before deploying another alien ship. Your strength is that you have 
 // the initiative and get to attack first. However, you do not have targeting lasers and can only attack the aliens in order. 
 // After you have destroyed a ship, you have the option to make a hasty retreat.
+
+
+
+/*  // building alien ship
+    let alienShip = ship.AlienShipBuilder();
+    
+    // building users ship
+    let userShip = ship.PlayerShipBuilder();
+    
+     */
+
+/* variables */
+
+/* 
+let attackAlien = playerShip.attack(alienShip);
+let attackPlayer = alienShip.attack(playerShip);
+     */
+
+let playerShip = PlayerShipBuilder();
+let alienShip;
+
+    playerNameElement.innerHTML = `
+        ${playerShip.name}
+            <h4>Hull Integrity</h4>
+            <h4 id="player-hull-hp">
+            ${playerShip.hull}
+            </h4>
+    `;
+    
 
 
 
@@ -36,28 +65,8 @@ console.log(userShip); */
 let state = {};
 
 function startGame() {
-   /*  // building alien ship
-    let alienShip = ship.AlienShipBuilder();
-    let attackUser = alienShip.attack(userShip);
-    // building users ship
-    let userShip = ship.PlayerShipBuilder();
-    let attackAlien = userShip.attack(alienShip);
-     */
-    let playerShip = PlayerShipBuilder();
-    let alienShip = AlienShipBuilder();
-
-    playerNameElement.innerHTML = `
-    ${playerShip.name}
-        <h4 id="player-hull-hp">
-        ${playerShip.hull}
-        </h4>
-    `;
     
-    //playerHpElement.innerHTML = `<h4 id="alien-hull-hp">${playerShip.name}</h4>`
 
-    alienNameElement.innerText = alienShip.name;
-
-    console.log(playerShip, playerHpElement.innerHTML = `<h4>${playerShip.name}</h4>`);
     state = {};
     showTextNode(1);
 }
@@ -66,6 +75,10 @@ function startGame() {
 /* Game Layout */
 
 function showTextNode(textNodeIndex) {
+
+    
+
+    
     // finds a text node that equals the passed in textNodeIndex
     const textNode = textNodes.find(textNode => textNode.id === textNodeIndex)
     storyTextElement.innerText = textNode.storyText;
@@ -93,10 +106,10 @@ function showTextNode(textNodeIndex) {
 }
 
 function showOption(option) {
-    
     return option.requiredState == null || option.requiredState(state);
 }
 
+// Step 4 : If it survives, it attacks you again ... etc
 
 function selectOption(option) {
     // stores selected nextTexts id 
@@ -105,25 +118,70 @@ function selectOption(option) {
     if(nextTextNodeId <= 0) {
         return startGame();
     }
+    console.log(option);
+    
+    
+    
+    // if player approaches ship
+    if (option.setState.spawnShip) {
+        console.log('ship spawned');
+        // build alien ship
+        alienShip = AlienShipBuilder();
 
-
-    // Step 1 : You attack the first alien ship
-
-    // if player chooses to attack
-    if(option.optionText === 'attack'){
-        /* attackAlien; */
-        displayH1Element.innerText = 'Player attacked Alien';
-        // update state 
-        state = Object.assign(state, option.setState);
-        // shows text menu 3
+        // set its health bar
+        alienNameElement.innerHTML = `
+            ${alienShip.name}
+                <h4>Hull Integrity</h4>
+                <h4 id="alien-hull-hp">
+                ${alienShip.hull}
+                </h4>
+        `;
+        // show ship interactions
         showTextNode(2);
+        // Step 1 : You attack the first alien ship
+        // else if player chooses to attack
+    } else if(option.setState.attack){
+        // attack
+        playerShip.attack(alienShip);
+
+        // display attack message
+        displayH1Element.innerHTML = `The ${playerShip.name} attacked ${alienShip.name}`;
+        // update alien health bar
+        alienNameElement.innerHTML = `
+            ${alienShip.name}
+                <h4>Hull Integrity</h4>
+                <h4 id="alien-hull-hp">${alienShip.hull}</h4>
+        `;
+        // if hull is 0 or less show defeat message
+        console.log(alienShip.hull);
+        if (alienShip.hull <= 0) {
+            // show alien defeated message
+            showTextNode(5);
+        } else {
+            // Step 2 : If the ship survives, it attacks you
+            // alien ship attacks player
+            alienShip.attack(playerShip);
+            // updates players health bar
+            playerNameElement.innerHTML = `
+                ${playerShip.name}
+                    <h4>Hull Integrity</h4>
+                    <h4 id="player-hull-hp">
+                    ${playerShip.hull}
+                    </h4>
+            `;
+            // Step 3 : If you survive, you attack the ship again
+            // if player is still alive after aliens attack
+            if (playerShip.hull >= 0) {
+                // update state 
+                state = Object.assign(state, option.setState);
+                // show alien attacked message
+                showTextNode(3);
+            }
+        }
     } else {
     
     // updates state 
     state = Object.assign(state, option.setState);
-
-    console.log(state);
-
     // shows next text and options
     showTextNode(nextTextNodeId);
     }
@@ -133,13 +191,13 @@ function selectOption(option) {
 
 
 
-// Step 2 : If the ship survives, it attacks you
 
 
-// Step 3 : If you survive, you attack the ship again
 
 
-// Step 4 : If it survives, it attacks you again ... etc
+
+
+
 
 
 // Step 5 : If you destroy the ship, you have the option to attack the next ship or to retreat
@@ -162,9 +220,13 @@ const textNodes = [
         options: [
             {
                 optionText: "get a closer look",
-                
+                setState: {spawnShip: true},
                 nextText: 2,
             },
+            {
+                optionText: "head to base",
+                nextText: 4,
+            }
             
         ]
     },
@@ -181,20 +243,18 @@ const textNodes = [
                 optionText: 'leave the area',
                 nextText: 4,
             },
-            {
-                optionText: 'filler3',
-                // attackAlien,
-                nextText: 3,
-            },
-            {
-                optionText: 'filler4',
-                nextText: -3,
-            },,
         ]
     },
     {
         id:3,
-        storyText: 'you have attacked the ship'
+        storyText: 'the enemy ship has attacked you',
+        options: [
+            {
+                optionText:'attack',
+                setState: { attack: true},
+                nextText: 3,
+            }
+        ]
     },
     {
         id:4,
@@ -202,6 +262,26 @@ const textNodes = [
         options: [
             {
                 optionText:'Restart',
+                nextText: -1
+            }
+        ]
+    },
+    {
+        id:5,
+        storyText: 'you have defeated the ship',
+        options: [
+            {
+                optionText:'Find next ship?',
+                nextText: -1
+            }
+        ]
+    },
+    {
+        id:6,
+        storyText: 'the enemy ship has attacked you',
+        options: [
+            {
+                optionText:'strike back.',
                 nextText: -1
             }
         ]
