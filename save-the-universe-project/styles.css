@@ -1,7 +1,14 @@
+:root {
+    --trans-background: rgba(255, 255, 255, 0.399);
+}
+
 *::before, *::after {
     box-sizing: border-box;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
+
+
 body {
     padding: 0;
     margin: 0;
@@ -14,6 +21,8 @@ body {
 }
 
 .grid-container {
+    width: 80%;
+    height: 80%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(5, 1fr);
@@ -21,78 +30,81 @@ body {
     grid-row-gap: 5px;
 }
 
-/* .extra-space-left {
-    grid-area: 1 / 1 / 6 / 2;
-} */
-
-.hp-bars {
-    justify-content: center;
-    align-items: center;
-    height: 6rem;
-    width: 50rem;
-    display: flex;
-    grid-area: 1 / 1 / 2 / 4; 
-    line-height: 1px;
-    
-    
-}
-
-.screen {
-    height: 50vh;
-    justify-content: center;
-    align-items: center;
-    grid-area: 2 / 1 / 5 / 4;
-}
-
-.screen h1 {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%) 
-}
-
-.container {
-    justify-content: center;
-    align-items: center;
-    width: 60rem;
-    max-width: 47.5rem;
-    background-color: white;
-    padding: 10px;
-    margin-left: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px 2px;
-    grid-area: 5 / 1 / 6 / 4;
-}
-
-/* .extra-space-right {
-    grid-area: 1 / 5 / 6 / 6;
-} */
-
 #player-hull {
     width: 150px;
     max-width: 100%;
-    background-color: white;
+    max-height: 55%;
+    height: 9em;
+    min-height: 55%;
+    background-color: var(--trans-background);
     padding: 15px 10px;
     border-radius: 5px;
     box-shadow: 0 0 10px 2px;
     text-align: center;
-    
-    
+    grid-area: 1 / 1 / 2 / 2;
+    justify-self: flex-end;
+    align-self: center;
 }
 
 #alien-hull {
     width: 150px;
     max-width: 100%;
-    background-color: white;
+    max-height: 55%;
+    min-height: 55%;
+    background-color: var(--trans-background);
     padding: 15px 10px;
     border-radius: 5px;
     box-shadow: 0 0 10px 2px;
     text-align: center;
-    margin-left: 22em;
+    align-self: center;
+    grid-area: 1 / 3 / 2 / 4;
+}
+
+.screen {
+    display: flex;
+    height: 90%;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    align-self: center;
+    grid-area: 2 / 1 / 5 / 4;
     
 }
+
+iframe {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -2;
+  }
+
+.action-text {
+    width: 50%;
+}
+
+.video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 50%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+.story-container {
+    grid-area: 5 / 1 / 6 / 4;
+    background-color: var(--trans-background);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 2px;
+    max-width: 100%;
+    max-height: 6.4em;
+}
+
+
 
 .btn-grid {
     display: grid;

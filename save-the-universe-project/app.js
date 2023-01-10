@@ -64,6 +64,7 @@ function showTextNode(textNodeIndex) {
             button.innerText = option.optionText;
             button.classList.add('btn');
             button.addEventListener('click', () => selectOption(option));
+            
             // appends created button on our element
             optionButtonsElement.appendChild(button);
         }
@@ -84,14 +85,15 @@ function selectOption(option) {
     let nextTextNodeId = option.nextText;
 
 
-    /* console.log(nextTextNodeId); */
+    console.log(nextTextNodeId);
 
 
     // if its 0 or less then game over and restart
     if(nextTextNodeId <= 0) {
         // setting variables to initial values
         playerShip = PlayerShipBuilder();
-        alienShip;
+        alienShip = {};
+        state = {};
         // setting players health bar
         playerNameElement.innerHTML = `
             ${playerShip.name}
@@ -101,20 +103,24 @@ function selectOption(option) {
                 </h4>
         `;
 
-        state = {};
+        alienNameElement.innerHTML = ``;
+        
+        
+        console.log(state);
+        
 
 
-        return startGame();
+        return showTextNode(1);
     }
 
     /* console.log(option); */
-    /* console.log(option.setState.spawnShip); */
-    
+    /* console.log(option.setState.spawnShip);
+    console.log(state); */
 
     // Step 5 : If you destroy the ship, you have the option to attack the next ship or to retreat
     // if player approaches ship
     if (option.setState.spawnShip) {
-
+        
         console.log('alien ship spawned');
 
         // build alien ship
@@ -227,6 +233,7 @@ const textNodes = [
             },
             {
                 optionText: "head to base",
+                setState: {spawnShip: false},
                 nextText: 4,
             }
             
@@ -238,11 +245,12 @@ const textNodes = [
         options: [
             {
                 optionText: 'attack',
-                setState: { attack: true},
+                setState: {attack: true},
                 nextText: 3,
             },
             {
                 optionText: 'leave the area',
+                setState: {spawnShip: false},
                 nextText: 4,
             },
         ]
@@ -287,6 +295,7 @@ const textNodes = [
         options: [
             {
                 optionText:'Restart',
+                setState: {spawnShip: false},
                 nextText: -1
             }
         ]
