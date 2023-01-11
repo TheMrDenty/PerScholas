@@ -1,4 +1,4 @@
-import {PlayerShipBuilder, AlienShipBuilder} from '/ship.js';
+import {PlayerShipBuilder, AlienShipBuilder} from '/components/ship.js';
 
 
 
@@ -22,6 +22,9 @@ const alienNameElement = document.getElementById('alien-hull');
 // declaring variables for global storage of player ship and alien ship
 let playerShip = PlayerShipBuilder();
 let alienShip;
+let enemies = [];
+
+
 // setting players health bar
 playerNameElement.innerHTML = `
     ${playerShip.name}
@@ -34,13 +37,23 @@ playerNameElement.innerHTML = `
 let state = {};
 
 function startGame() {
-    
+    generateEnemies();
     state = {};
     showTextNode(1);
 }
 
+function generateEnemies() {
+    for(let i=0;i<6;i++){
+        enemies.push(AlienShipBuilder())
+    }
+}
 
-/* Game Layout */
+function clearEnemies() {
+    for(let i=0;i<6;i++){
+        enemies.shift();
+        console.log(enemies);
+    }
+}
 
 function showTextNode(textNodeIndex) {
 
@@ -92,7 +105,7 @@ function selectOption(option) {
     if(nextTextNodeId <= 0) {
         // setting variables to initial values
         playerShip = PlayerShipBuilder();
-        alienShip = {};
+        clearEnemies();
         state = {};
         // setting players health bar
         playerNameElement.innerHTML = `
@@ -110,7 +123,7 @@ function selectOption(option) {
         
 
 
-        return showTextNode(1);
+        return startGame();
     }
 
     /* console.log(option); */
@@ -122,9 +135,9 @@ function selectOption(option) {
     if (option.setState.spawnShip) {
         
         console.log('alien ship spawned');
-
+        
         // build alien ship
-        alienShip = AlienShipBuilder();
+        alienShip = enemies[0];
 
         // set its health bar
         alienNameElement.innerHTML = `
@@ -157,12 +170,20 @@ function selectOption(option) {
 
 
 
-        // if hull is 0 or less show defeat message
-        
+        // if hull is 0 or less show defeat message        
         if (alienShip.hull <= 0) {
-
-            // show alien defeated message
-            showTextNode(5);
+            // shift first enemy from enemies array
+            enemies.shift();
+            // Step 7 : You win the game if you destroy all of the aliens
+            // if enemies array is empty
+            if (enemies.length === 0){
+                // show win game message
+                showTextNode(7);
+            } else {
+                // show alien defeated message
+                showTextNode(5);
+            }
+            console.log(enemies);
         } else {
 
 
@@ -214,7 +235,7 @@ function selectOption(option) {
 
 
 
-// Step 7 : You win the game if you destroy all of the aliens
+
 
 
 
@@ -299,7 +320,19 @@ const textNodes = [
                 nextText: -1
             }
         ]
-    }
+    },
+    {
+        id:7,
+        
+        storyText: 'you have destroyed the alien fleet! You saved the universe!!!',
+        options: [
+            {
+                optionText:'play again.',
+                setState: {spawnShip: false},
+                nextText: -1
+            }
+        ]
+    },
 ]
 
 startGame();
