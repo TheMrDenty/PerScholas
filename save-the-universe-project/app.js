@@ -7,6 +7,7 @@ const optionButtonsElement = document.getElementById('option-buttons');
 const displayH1Element = document.getElementById('action-text');
 const playerNameElement = document.getElementById('player-hull');
 const alienNameElement = document.getElementById('alien-hull');
+const video = document.querySelector('.video');
 
 // Earth has been attacked by a horde of aliens! You are the captain of the USS Assembly, 
 // on a mission to destroy every last alien ship.
@@ -37,6 +38,7 @@ playerNameElement.innerHTML = `
 let state = {};
 
 function startGame() {
+    startVideo(0, -1)
     displayH1Element.innerHTML = `The universe needs your help! Destroy the alien fleet and save the universe!!!`
     generateEnemies();
     state = {};
@@ -54,6 +56,33 @@ function clearEnemies() {
         enemies.shift();
         console.log(enemies);
     }
+}
+
+function startVideo(selectedVideo, delay){
+    const videos = [
+        {
+            id: 0,
+            desc: 'main video',
+            src: 'https://www.youtube-nocookie.com/embed/oPC_CFxP_WY?controls=0&start=11&loop=1&autoplay=1&mute=1'
+        },
+        {
+            id: 1,
+            desc: 'ship landing',
+            src: 'https://www.youtube.com/embed/mSEk7q5Le9k?controls=0&start=75&loop=1&autoplay=1&mute=1'
+        }
+    ]
+
+    // sets iframes src to selected src
+    video.src = videos[selectedVideo].src;
+
+    // allows for no delay
+    if (delay > 0){
+        setTimeout(() => {stopVideo()}, delay)
+    }
+}
+
+function stopVideo(){
+    video.src = '';
 }
 
 function showTextNode(textNodeIndex) {
@@ -98,6 +127,8 @@ function selectOption(option) {
     // stores selected nextTexts id 
     let nextTextNodeId = option.nextText;
     if(nextTextNodeId === 4) {
+        startVideo(1, 12000)
+        
         displayH1Element.innerHTML = `GAME OVER`
     }
 
@@ -277,7 +308,7 @@ const textNodes = [
                 nextText: 3,
             },
             {
-                optionText: 'leave the area',
+                optionText: 'retreat to base',
                 setState: {spawnShip: false},
                 nextText: 4,
             },
@@ -291,7 +322,12 @@ const textNodes = [
                 optionText:'attack',
                 setState: {attack: true},
                 nextText: 3,
-            }
+            },
+            {
+                optionText: 'retreat to base',
+                setState: {spawnShip: false},
+                nextText: 4,
+            },
         ]
     },
     {
