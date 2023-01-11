@@ -37,6 +37,7 @@ playerNameElement.innerHTML = `
 let state = {};
 
 function startGame() {
+    displayH1Element.innerHTML = `The universe needs your help! Destroy the alien fleet and save the universe!!!`
     generateEnemies();
     state = {};
     showTextNode(1);
@@ -92,17 +93,20 @@ function showOption(option) {
 
 function selectOption(option) {
     /* console.log(playerShip.hull); */
-
+    
 
     // stores selected nextTexts id 
     let nextTextNodeId = option.nextText;
-
+    if(nextTextNodeId === 4) {
+        displayH1Element.innerHTML = `GAME OVER`
+    }
 
     console.log(nextTextNodeId);
 
 
     // if its 0 or less then game over and restart
     if(nextTextNodeId <= 0) {
+        
         // setting variables to initial values
         playerShip = PlayerShipBuilder();
         clearEnemies();
@@ -135,9 +139,11 @@ function selectOption(option) {
     if (option.setState.spawnShip) {
         
         console.log('alien ship spawned');
-        
+
         // build alien ship
         alienShip = enemies[0];
+
+        displayH1Element.innerHTML = `You have approached ${alienShip.name}`;
 
         // set its health bar
         alienNameElement.innerHTML = `
@@ -177,6 +183,7 @@ function selectOption(option) {
             // Step 7 : You win the game if you destroy all of the aliens
             // if enemies array is empty
             if (enemies.length === 0){
+                displayH1Element.innerHTML = `YOU WIN`;
                 // show win game message
                 showTextNode(7);
             } else {
@@ -190,7 +197,7 @@ function selectOption(option) {
             // Step 2 : If the ship survives, it attacks you
             // alien ship attacks player
             alienShip.attack(playerShip);
-
+            displayH1Element.innerHTML = `${alienShip.name} survived your attack and has attacked the ${playerShip.name}`;
             // updates players health bar
             playerNameElement.innerHTML = `
                 ${playerShip.name}
