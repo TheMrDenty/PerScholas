@@ -24,6 +24,7 @@ const video = document.querySelector('.video');
 let playerShip = PlayerShipBuilder();
 let alienShip;
 let enemies = [];
+let timeoutId;
 
 
 // setting players health bar
@@ -38,7 +39,7 @@ playerNameElement.innerHTML = `
 let state = {};
 
 function startGame() {
-    startVideo(0, -1)
+    startVideo(4, 4000)
     displayH1Element.innerHTML = `The universe needs your help! Destroy the alien fleet and save the universe!!!`
     generateEnemies();
     state = {};
@@ -69,7 +70,28 @@ function startVideo(selectedVideo, delay){
             id: 1,
             desc: 'ship landing',
             src: 'https://www.youtube.com/embed/mSEk7q5Le9k?controls=0&start=75&loop=1&autoplay=1&mute=1'
-        }
+        },
+        {
+            id: 2,
+            desc: 'destroy',
+            src: 'https://www.youtube.com/embed/UE6akThgKc0?start=49&loop=1&autoplay=1&mute=1'
+        },
+        {
+            id: 3,
+            desc: 'destroyed',
+            src: 'https://www.youtube.com/embed/xlUF3NS5H8I?start=245&loop=1&autoplay=1&mute=1'
+        },
+        {
+            id: 4,
+            desc: 'noticed',
+            src: 'https://www.youtube.com/embed/nCcfJ9uEwvs?start=244&loop=1&autoplay=1&mute=1'
+        },
+        {
+            id: 5,
+            desc: 'celebration',
+            src: 'https://www.youtube.com/embed/GlCFPo6YYbU?start=60&loop=1&autoplay=1&mute=1'
+        },
+        
     ]
 
     // sets iframes src to selected src
@@ -77,8 +99,10 @@ function startVideo(selectedVideo, delay){
 
     // allows for no delay
     if (delay > 0){
-        setTimeout(() => {stopVideo()}, delay)
+        timeoutId = setTimeout(() => {stopVideo()}, delay)
+        
     }
+    console.log('here');
 }
 
 function stopVideo(){
@@ -123,6 +147,8 @@ function showOption(option) {
 function selectOption(option) {
     /* console.log(playerShip.hull); */
     
+    // clearTimeout here incase user is clicking through itll stop timer on last video from affecting new video
+    clearTimeout(timeoutId)
 
     // stores selected nextTexts id 
     let nextTextNodeId = option.nextText;
@@ -168,7 +194,7 @@ function selectOption(option) {
     // Step 5 : If you destroy the ship, you have the option to attack the next ship or to retreat
     // if player approaches ship
     if (option.setState.spawnShip) {
-        
+        startVideo(4, 6200);
         console.log('alien ship spawned');
 
         // build alien ship
@@ -209,11 +235,14 @@ function selectOption(option) {
 
         // if hull is 0 or less show defeat message        
         if (alienShip.hull <= 0) {
+            // show destruction video with delay of 
+            startVideo(2, 17000)
             // shift first enemy from enemies array
             enemies.shift();
             // Step 7 : You win the game if you destroy all of the aliens
             // if enemies array is empty
             if (enemies.length === 0){
+                startVideo(5, 60000);
                 displayH1Element.innerHTML = `YOU WIN`;
                 // show win game message
                 showTextNode(7);
@@ -251,11 +280,11 @@ function selectOption(option) {
 
             } else {
 
-
+                startVideo(3, 16900);
                 // Step 8 : You lose the game if you are destroyed
                 /* console.log('reached'); */
                 nextTextNodeId = 6
-                displayH1Element.innerHTML = `The ${alienShip.name} destoyed ${playerShip.name} `;
+                displayH1Element.innerHTML = `${alienShip.name} destoyed the ${playerShip.name} `;
                 showTextNode(6);
             }
         }
@@ -283,7 +312,7 @@ function selectOption(option) {
 const textNodes = [
     {
         id:1,
-        storyText: "You notice a ship in the distance.",
+        storyText: "You notice a fleet of ships taking off in the distance",
         options: [
             {
                 optionText: "get a closer look",
