@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans&family=Solitreo&display=swap');
+
+:root {
+    --clr-primary: #543548;
+    --clr-secondary: hsl(233, 42%, 46%);
+    --clr-off-white: rgb(231, 227, 227);
+    
+    --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+
+    --font-primary: 'Solitreo', cursive;
+    --font-secondary: 'Sofia Sans', sans-serif;
+}
+
+body {
+    background-color: var(--clr-primary) ;
+    text-transform: capitalize;
+}
+
+.header{
+    background-color: var(--clr-off-white);
+    margin: 0 1em;
+    padding: .1em;
+    text-align: center;
+    font-family: var(--font-primary);
+    border: 5px solid black;
+}
+
+.search-bar{
+    background-color: var(--clr-off-white);
+    margin: 0 1em;
+    padding: 1em;
+    color: gray;
+    font-family: var(--font-secondary);
+    border-left: 5px solid black;
+    border-right: 5px solid black;
+}
+
+.employee-list {
+    margin: 0 1em;
+    background-color: var(--clr-off-white);
+    border: 5px solid black;
+}
+
+.employee-item-container{
+    display: flex;
+    padding: .5rem;
+    
+}
+
+.person-img {
+    border-radius: 50%;
+    width: 5rem;
+    height: 5rem;
+    object-fit: cover;
+    border: 4px solid var(--clr-secondary);
+    box-shadow: var(--dark-shadow);
+    
+}
+
+.employee-info {
+    padding-left: .8rem;
+}
+
+.employee-name {
+    font-family: var(--font-primary);
+}
+
+.employee-title {
+    font-family: var(--font-secondary);
+}
