@@ -1,0 +1,218 @@
+/*
+=============== 
+Fonts
+===============
+*/
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Chivo+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
+/*
+=============== 
+Variables
+===============
+*/
+
+:root {
+  /* unusual colors */
+  --clr-salmon-1: #f7dde0;
+  --clr-blue-1: #b9d0f8;
+  --clr-mint-1: #c7fadc;
+  --clr-green-1: #B5C3BD;
+  --clr-lime-1: #d1ed7d;
+  --clr-lime-2: #b8e72c;
+  --clr-orange-1: #f4c9a6;
+  --clr-turquoise-1: #67CCC4;
+  --clr-pink-1: #f3c8f2;
+  --clr-pink-2: #daafda;
+  --clr-yellow-1: #ffdb11;
+  --clr-red-1: #f0271d;
+  --clr-grey-1: hsla(200, 3%, 21%, 0.53);
+  --clr-grey-2: hsla(200, 3%, 21%, 0.605);
+  --clr-grey-3: hsla(200, 3%, 21%, 0.805);
+  --clr-light-grey-1: hsla(210, 1%, 54%, 0.189);
+  
+  --clr-white: #fff;
+  --clr-red-dark: hsl(360, 67%, 44%);
+  --clr-red-light: hsl(360, 71%, 66%);
+  --clr-green-dark: hsl(125, 67%, 44%);
+  --clr-green-light: hsl(125, 71%, 66%);
+  --clr-black: #222;
+
+  /* fonts */
+  --ff-primary: 'Chivo Mono', monospace;
+  --ff-secondary: 'Unbounded', cursive;
+  --ff-raleway-light: 'Raleway', sans-serif;
+
+
+  --transition: all 0.3s linear;
+  --spacing: 0.1rem;
+  --radius: 0.25rem;
+  --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+
+  --box-shadow: .15rem .15rem 0rem .1rem #000000;
+  --box-shadow-small: .15rem .15rem 0rem .05rem #000000;
+  --box-border: .15rem solid black;
+  --text-shadow: 0.05rem 0.05rem 0rem black;
+}
+
+body{
+  display: flex;
+  max-width: 900px;
+  margin: auto;
+}
+
+/* header */
+
+h1 {
+  color: var(--clr-red-1);
+  font-family: var(--ff-raleway-light);
+  font-size: 4rem;
+  line-height: .5rem;
+  letter-spacing: .1rem;
+  text-transform: capitalize;
+}
+
+h2 {
+  color: var(--clr-black);
+  font-family: var(--ff-raleway-light);
+  line-height: 2rem;
+  text-transform: capitalize;
+}
+
+nav ul {
+  
+  display:flex;
+  font-family: var(--ff-raleway-light);
+  font-size: 1.1rem;
+  font-weight: bold;
+  line-height: 2rem;
+  list-style: none;
+  padding: 0;
+  text-decoration: none;
+  text-transform: capitalize;
+}
+
+.header nav li {
+  padding-right: 1.5rem;
+}
+
+.header nav a:link {
+  background-color: transparent;
+  color: var(--clr-grey-1);
+  text-decoration: underline;
+  text-underline-offset: .25rem;
+}
+
+.header nav a:visited {
+  background-color: transparent;
+  color: var(--clr-grey-1);
+  text-underline-offset: .25rem;
+}
+
+.header nav a:hover {
+  background-color: transparent;
+  color: var(--clr-red-1);
+  text-decoration: underline;
+}
+
+.header nav a:active {
+  background-color: transparent;
+  color: var(--clr-red-1);
+  text-decoration: underline;
+}
+
+/* article */
+
+article {
+  font-family: var(--ff-raleway-light);
+  margin-top: 4rem;
+}
+
+article time {
+  
+  color: var(--clr-grey-2);
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+article h3 {
+  max-width: 900px;
+  color: var(--clr-black);
+  font-size: 2rem;
+  line-height: .5rem;
+  letter-spacing: .1rem;
+  text-transform: capitalize;
+}
+p{
+  max-width: 900px;
+  color: var(--clr-grey-3);
+  line-height: 1.5;
+  font-weight: bold;
+}
+p::first-letter {
+  color: var(--clr-grey-3);
+  float: left;
+  font-weight: bold;
+  font-size: 4rem;
+  padding-right: .8rem;
+}
+
+article hr {
+  border:1px solid var(--clr-light-grey-1);
+  justify-self: center;
+}
+
+.btn-right {
+  text-align: right;
+}
+
+button {
+  text-transform: capitalize;
+  color: var(--clr-red-1);
+  font-weight: bold;
+  background: none;
+  border: none;
+  margin:0;
+  padding:0;
+  cursor: pointer;
+  padding-bottom: 1rem;
+}
+
+/* footer */
+
+.footer nav li {
+  padding-right: 2.85rem;
+  padding-top: 3rem;
+  line-height: .1rem;
+}
+
+.footer nav a:link {
+  background-color: transparent;
+  color: var(--clr-red-1);
+  text-decoration: none;
+}
+
+.footer nav a:visited {
+  background-color: transparent;
+  color: var(--clr-red-1);
+
+}
+
+.footer nav a:hover {
+  background-color: transparent;
+  color: var(--clr-grey-1);
+
+}
+
+.footer nav a:active {
+  background-color: transparent;
+  color: var(--clr-grey-1);
+}
+
+.footer h5 {
+  color: var(--clr-grey-1);
+  text-transform: capitalize;
+  font-family: var(--ff-raleway-light);
+}
