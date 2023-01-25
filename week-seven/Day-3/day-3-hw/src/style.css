@@ -55,6 +55,8 @@ body {
     
 }
 
+
+
 .person-img {
     border-radius: 50%;
     width: 5rem;
@@ -66,7 +68,9 @@ body {
 }
 
 .employee-info {
+    padding-top: .7rem;
     padding-left: .8rem;
+    line-height: .1rem;
 }
 
 .employee-name {
