@@ -39,7 +39,7 @@ playerNameElement.innerHTML = `
 let state = {};
 
 function startGame() {
-    startVideo(4, 4000)
+    startVideo(0, -1)
     displayH1Element.innerHTML = `The universe needs your help! Destroy the alien fleet and save the universe!!!`
     generateEnemies();
     state = {};

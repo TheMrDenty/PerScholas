@@ -12,7 +12,7 @@ topMenuEl.style.backgroundColor = 'var(--top-menu-bg)';
 topMenuEl.classList.add('flex-around')
 
 // Menu data structure
-var menuLinks = [
+let menuLinks = [
   {text: 'about', href: '/about'},
   {text: 'catalog', href: '#', subLinks: [
     {text: 'all', href: '/catalog/all'},
@@ -54,9 +54,9 @@ subMenuEl.style.top = 0;
 
 function buildSubMenu(subLinks) {
   // selects all anchors in sub-menu nav and assigns them
-  let anchorsToDelte = document.querySelectorAll('#sub-menu a');
+  let subMenuToDelete = document.querySelectorAll('#sub-menu a');
   // loops through anchors
-  for(let i=0; a=anchorsToDelte[i]; i++){
+  for(let i=0; a=subMenuToDelete[i]; i++){
     // removes self
     a.parentNode.removeChild(a);
   }
@@ -69,7 +69,7 @@ function buildSubMenu(subLinks) {
     /* i.setAttribute('href', menuLinks.href);
     i.textContent = menuLinks.text;
     i.document.body.appendChild(i) */
-}
+  }
 }
 
 topMenuEl.addEventListener('click', function(event) {
@@ -128,10 +128,6 @@ topMenuEl.addEventListener('click', function(event) {
       }
     })
   }
-
-  
-
-  
 })
 
 subMenuEl.addEventListener('click', function(event) {
@@ -156,3 +152,4 @@ subMenuEl.addEventListener('click', function(event) {
 })
 
 console.log(topMenuLinks)
+

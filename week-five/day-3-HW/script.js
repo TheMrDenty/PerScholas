@@ -84,27 +84,27 @@ document.addEventListener("DOMContentLoaded", function(event) {
   console.log(nycBlogDiv, nycBlogH1, main);
 
   // Part 8
-    const quoteTitle = document.querySelector('#quote-title');
+  const quoteTitle = document.querySelector('#quote-title');
 
-    quoteTitle.addEventListener('click', function(){
-      randomQuote();
-    });
+  quoteTitle.addEventListener('click', function(){
+    randomQuote();
+  });
 
   // Part 9
 
-    const blogPosts = document.querySelectorAll('.blog-post');
-    blogPosts.forEach((posts) => {
-      posts.addEventListener('mouseout', (event) => {
-        event.stopPropagation();
-        console.log(event);
-        event.currentTarget.classList.toggle('purple');
-      })
-      posts.addEventListener('mouseenter', (event) => {
-        console.log(event);
-        event.stopPropagation();
-        event.currentTarget.classList.toggle('red');
-      })
+  const blogPosts = document.querySelectorAll('.blog-post');
+  blogPosts.forEach((posts) => {
+    posts.addEventListener('mouseout', (event) => {
+      event.stopPropagation();
+      // console.log(event);
+      event.currentTarget.classList.toggle('purple');
     })
+    posts.addEventListener('mouseenter', (event) => {
+      // console.log(event);
+      event.stopPropagation();
+      event.currentTarget.classList.toggle('red');
+    })
+  })
 
 
 });

@@ -12,23 +12,32 @@
 }
 
 body {
+    display: block;
     background-color: var(--clr-primary) ;
     text-transform: capitalize;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .header{
     background-color: var(--clr-off-white);
-    margin: 0 1em;
-    padding: .1em;
+   
     text-align: center;
     font-family: var(--font-primary);
     border: 5px solid black;
 }
 
-.search-bar{
+.search-bar {
+    display: flex;
+}
+
+.search-bar input{
     background-color: var(--clr-off-white);
-    margin: 0 1em;
-    padding: 1em;
+    flex: 2;
+    height: 3rem;
+    padding: 1rem;
+    outline: none;
     color: gray;
     font-family: var(--font-secondary);
     border-left: 5px solid black;
@@ -36,7 +45,6 @@ body {
 }
 
 .employee-list {
-    margin: 0 1em;
     background-color: var(--clr-off-white);
     border: 5px solid black;
 }
