@@ -12,7 +12,6 @@ function App() {
         if (card !== ''){
             setIsValid(luhnValidate(luhnCalculate(card)))
         } 
-        
     }, [card])
 
     const luhnCheckSum = (code) => {
