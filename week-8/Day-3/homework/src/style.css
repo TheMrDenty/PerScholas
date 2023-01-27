@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta&family=Noto+Sans+NKo&family=Nunito+Sans&display=swap');
+
+:root {
+    --primary-font: 'Mukta', sans-serif;
+    --secondary-font: 'Nunito Sans', sans-serif;
+    --tertiary-font: 'Noto Sans NKo', sans-serif;
+    --clr-green:rgba(132, 225, 93, 0.821); 
+    --clr-gray: rgb(167, 167, 167);
+    --clr-yellow: rgba(221, 212, 117, 0.99);
+    --border: 5px solid black;
+    --shadow: 2px 2px 1px rgb(0, 0, 0);
+    --test-border: 1px solid red;
+}
+
+body {
+    background-color: var(--clr-green);
+    display: block;
+    margin: auto;
+    width: 75%;
+}
+
+.container {
+    background-color: var(--clr-gray);
+    border: var(--border);
+    box-shadow: var(--shadow);
+}
+
+nav {
+    background-color: var(--clr-yellow);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    
+    margin-bottom:-1.5em;
+    margin-top: 2em;
+    padding-bottom: 1.5em;
+    text-align: center;
+    border-top: var(--border);
+    border-left: var(--border);
+    border-right: var(--border);
+    box-shadow: var(--shadow);
+    
+}
+
+nav h1 {
+    font-family: var(--primary-font);
+}
+
+.student {
+    border-radius: 10px;
+    border: var(--border);
+    box-shadow: var(--shadow) ;
+    background-color: rgba(255, 255, 255, 0.923);
+   
+    margin: 1em 1.5em;
+    padding: 1rem 2.5rem;
+   
+    
+}
+
+.student h1 {
+    font-family: var(--primary-font);
+    border-bottom: var(--border);
+}
+
+p {
+    font-family: var(--tertiary-font);
+}
+
+ul {
+    list-style: none;
+    background-color: var(--clr-yellow);
+    padding: .25rem 1rem;
+    border-radius: 10px;
+    border: var(--border);
+    box-shadow: 2px 2px 1px rgb(0, 0, 0);
+}
+
+li {
+    border-bottom: 5px solid black;
+    margin-bottom: 2rem;
+}
+
+.score {
+    
+}
+
+h2 {
+    font-family: var(--secondary-font);
+}
+
+.score p {
+    font-family: var(--tertiary-font);
+    margin-top: -2vh;
+    margin-left: 10vh;
+    
+    
+}
+
+footer {
+    background-color: var(--clr-yellow);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-bottom:-1.5em;
+    margin-bottom: 2em;
+    padding: 1em;
+    text-align: center;
+    border-bottom: var(--border);
+    border-left: var(--border);
+    border-right: var(--border);
+    padding-top: 1.5em;
+    box-shadow: var(--shadow);
+}
